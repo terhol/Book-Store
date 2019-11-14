@@ -15,6 +15,6 @@ WildFly
 
 H2
 
-JUnit 5
+JUnit 4
 
 Arquillian
