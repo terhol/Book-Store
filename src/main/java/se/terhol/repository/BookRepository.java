@@ -1,7 +1,10 @@
 package se.terhol.repository;
 
 import se.terhol.model.Book;
+import se.terhol.util.NumberGenerator;
+import se.terhol.util.TextUtil;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -15,15 +18,25 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 @Transactional(SUPPORTS)
 public class BookRepository {
 
-    @PersistenceContext(unitName = "BookStorePU")
+    @PersistenceContext(unitName = "bookStorePU")
     private EntityManager manager;
+
+    @Inject
+    private TextUtil textUtil;
+
+    @Inject
+    private NumberGenerator generator;
+
 
     public Book find(@NotNull Long id) {
         return manager.find(Book.class, id);
+
     }
 
     @Transactional(REQUIRED)
     public Book create(@NotNull Book book) {
+        book.setTitle(textUtil.sanitize(book.getTitle()));
+        book.setIsbn(generator.generate());
         manager.persist(book);
         return book;
     }

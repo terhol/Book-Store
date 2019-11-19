@@ -1,4 +1,9 @@
 package se.terhol.rest;
 
-public class JAXRSConfiguration {
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("api")
+public class JAXRSConfiguration extends Application {
+
 }

@@ -1,4 +1,6 @@
 package se.terhol.util;
 
-public class NumberGenrator {
+public interface NumberGenerator {
+
+    public String generate();
 }
