@@ -7,8 +7,6 @@ Requirements: A bookstore web application which can visualize a list of books fr
 Technologies:
 Java EE
 
-Angular JS
-
 Maven
 
 WildFly
